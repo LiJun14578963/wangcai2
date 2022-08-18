@@ -2,39 +2,6 @@
 <div class="nav-wrapper">
   <div class="content">
     <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    <p>Money.vue</p>
-    Money.vue
   </div>
   <Nav/>
 </div>
@@ -51,7 +18,7 @@ export default {
     border:1px solid green;
     display:flex;
     flex-direction: column;
-     height: 100vh;
+    height: 100vh;
   }
   .content{
     overflow:auto;
