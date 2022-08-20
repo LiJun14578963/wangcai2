@@ -38,7 +38,7 @@ export default class NumberPad extends Vue {
       }
       return;
     }
-    if(this.output.indexOf('0') >=0 && input === '.') {return;}
+    if(this.output.indexOf('.') >=0 && input === '.') {return;}
     this.output += input;
     }
 
