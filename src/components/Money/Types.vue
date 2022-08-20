@@ -54,3 +54,4 @@ export default class Types extends Vue {
 }
 
 </style>
+
