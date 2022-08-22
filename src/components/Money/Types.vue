@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component, Prop} from 'vue-property-decorator';
+import {Component, Watch} from 'vue-property-decorator';
 @Component
 export default class Types extends Vue {
   type = '-';
@@ -22,6 +22,10 @@ export default class Types extends Vue {
       throw new Error('type is unknown');
     }
     this.type = type;
+  }
+  @Watch('type')
+  onTypeChanged(value:string){
+    this.$emit('update:value',value);
   }
 }
 </script>
