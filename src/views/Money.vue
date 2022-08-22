@@ -1,6 +1,5 @@
 <template>
   <Layout class-prefix="layout">
-    {{record}}
     <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
 <!--    <Types :value="record.type" @update:value="onUpdateType"/>-->
     <Types :value.sync="record.type"/>
@@ -16,11 +15,13 @@ import Notes from '@/components/Money/Notes.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component,Watch} from 'vue-property-decorator';
 //type  是声明类型的意思，声明一个复杂类型类似于js的var   let   const
+
 type Record = {
   tags: string[]
   notes: string
   type: string
-  amount: number
+  amount: number //数据类型
+  createdAt?: Date //类或者构造函数
 }
 
 @Component({
@@ -28,7 +29,8 @@ type Record = {
 })
 export default class Money extends Vue {
   tags = ['衣','食','住','行'];
-  recordList: Record[] = []
+  recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]')
+  //设置初始值，没有初始值的话设置为空数组
   record: Record = {
     tags: [''], notes: '', type: '-', amount: 0
   }//对声明的对象赋值
@@ -46,14 +48,15 @@ export default class Money extends Vue {
     this.record.amount = parseFloat(value);
   }
   saveRecord(){
-    const record2 = JSON.parse(JSON.stringify(this.record))
+    const record2 : Record = JSON.parse(JSON.stringify(this.record))
+    record2.createdAt = new Date()//设置一个保存时间
     this.recordList.push(record2)
-    console.log(this.recordList);
     //把新的对象深拷贝，然后再push
   }
   @Watch('recordList')
   onRecordListChange(){
     window.localStorage.setItem('recordList',JSON.stringify(this.recordList));
+    console.log('recordList');
   }
   }
 </script>
