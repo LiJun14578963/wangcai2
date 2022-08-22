@@ -1,7 +1,7 @@
 <template>
   <Layout class-prefix="layout">
     {{record}}
-    <NumberPad @update:value="onUpdateAmount"/>
+    <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
 <!--    <Types :value="record.type" @update:value="onUpdateType"/>-->
     <Types :value.sync="record.type"/>
     <Notes @update:value="onUpdateNotes"/>
@@ -28,6 +28,7 @@ type Record = {
 })
 export default class Money extends Vue {
   tags = ['衣','食','住','行'];
+  recordList: Record[] = []
   record: Record = {
     tags: [''], notes: '', type: '-', amount: 0
   }//对声明的对象赋值
@@ -43,6 +44,16 @@ export default class Money extends Vue {
   // }
   onUpdateAmount(value:string){
     this.record.amount = parseFloat(value);
+  }
+  saveRecord(){
+    const record2 = JSON.parse(JSON.stringify(this.record))
+    this.recordList.push(record2)
+    console.log(this.recordList);
+    //把新的对象深拷贝，然后再push
+  }
+  @Watch('recordList')
+  onRecordListChange(){
+    window.localStorage.setItem('recordList',JSON.stringify(this.recordList));
   }
   }
 </script>
