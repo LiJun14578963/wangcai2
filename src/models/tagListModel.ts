@@ -20,11 +20,10 @@ const tagListModel: TagListModel = {
     if(names.indexOf(name)>=0){return 'duplicated';}
     this.data.push({id: name, name: name});
     this.save();
-    console.log(name);
     return 'success';
   },
   save(){
-    window.localStorage.setItem('localStorageKeyName',JSON.stringify(this.data));
+    window.localStorage.setItem(localStorageKeyName,JSON.stringify(this.data));
   }
 }
 
