@@ -7,6 +7,7 @@ const recordListModel = {
     const record2 : RecordItem = clone(record)
     record2.createdAt = new Date()//设置一个保存时间
     this.data.push(record2)
+    this.save()
     //把新的对象深拷贝，然后再push
   },
   fetch() {
