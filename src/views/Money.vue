@@ -20,14 +20,15 @@ import Tags from '@/components/Money/Tags.vue';
 import {Component,Watch} from 'vue-property-decorator';
 import  recordListModel from '@/models/recordListModel'
 import tagListModel from '@/models/tagListModel';
+
 const recordList = recordListModel.fetch();
-const tagList = tagListModel.fetch();
+
 
 @Component({
   components: {Tags, FormItem, Types, NumberPad}
 })
 export default class Money extends Vue {
-  tags = tagList;
+  tags = window.tagList;
   recordList: RecordItem[] = JSON.parse(window.localStorage.getItem('recordList') || '[]')
   //设置初始值，没有初始值的话设置为空数组
   record: RecordItem = {
