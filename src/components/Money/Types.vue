@@ -16,7 +16,6 @@ import Vue from 'vue';
 import {Component, Prop, Watch} from 'vue-property-decorator';
 @Component
 export default class Types extends Vue {
-  // eslint-disable-next-line no-undef
   @Prop() readonly value!: string;
   // type = '-';
   selectType(type: string) {

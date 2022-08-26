@@ -11,7 +11,6 @@
   </div>
 </template>
 
-
 <script lang="ts">
 import Vue from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
@@ -28,8 +27,6 @@ export default class Tags extends Vue {
     }
     this.$emit('update:value',this.selectedTags)//点击的时候把this.selectedTags 传参数给 value
   }
-
-
   create() {
     const name = window.prompt('请输入标签名')
     if (name === '') {

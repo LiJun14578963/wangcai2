@@ -18,9 +18,9 @@ import Types from '@/components/Money/Types.vue';
 import FormItem from '@/components/Money/Formltem.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component,Watch} from 'vue-property-decorator';
-import  modelListModel from '@/models/modelListModel'
+import  recordListModel from '@/models/recordListModel'
 import tagListModel from '@/models/tagListModel';
-const recordList = modelListModel.fetch();
+const recordList = recordListModel.fetch();
 const tagList = tagListModel.fetch();
 
 @Component({
@@ -44,17 +44,17 @@ export default class Money extends Vue {
   //   this.record.type = value;
   // }
   onUpdateAmount(value:string){
-    this.record.amount = parseFloat(value);
+    this.record.amount = parseFloat(value);//value的值可能有小数，parseFloat小数
   }
   saveRecord(){
-    const record2 : RecordItem = modelListModel.clone(this.record)
+    const record2 : RecordItem = recordListModel.clone(this.record)
     record2.createdAt = new Date()//设置一个保存时间
     this.recordList.push(record2)
     //把新的对象深拷贝，然后再push
   }
   @Watch('recordList')
   onRecordListChange(){
-    modelListModel.save(this.recordList)
+    recordListModel.save(this.recordList)
   }
   }
 </script>
