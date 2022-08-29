@@ -19,15 +19,16 @@ import {Component, Prop} from 'vue-property-decorator';
 @Component({
   computed:{
     tagList(){
-      // TODO
-      // return this.$store.fetchTags();
-      return []
+      return this.$store.state.tagList;
     }
   }}
 )
 export default class Tags extends Vue {
   // @Prop({required: true}) readonly dataSource!: string[];//字符串数组  @Prop不指定类型可以用（）表示  readonly只读属性
   selectedTags: string[] = [];
+  created(){
+    this.$store.commit('fetchTags')
+  }
   toggle(tag: string){
     const index = this.selectedTags.indexOf(tag);
     if(index >= 0){
@@ -40,8 +41,9 @@ export default class Tags extends Vue {
   create() {
     const name = window.prompt('请输入标签名')
     if (!name) {return window.alert('标签名不能为空');}
-      //TODO
-      // store.createTag(name)
+    this.$store.commit('createTag',name)
+
+
       // this.$emit('update:dataSource', [...this.dataSource, name]);  会报错
       //如果你填了一个name，且name的值不为空，我就会把你要更新dataSource的请求告诉外部，外部就可以接受这个事件
   }
