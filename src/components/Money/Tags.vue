@@ -4,7 +4,7 @@
       <button @click="create">新增标签</button>
     </div>
     <ul class="current">
-      <li v-for="tag in dataSource"  :key="tag.id"
+      <li v-for="tag in tagList"  :key="tag.id"
       :class="{selected: selectedTags.indexOf(tag)>=0}"
       @click="toggle(tag)">{{ tag.name }}
       </li>
@@ -13,11 +13,20 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, {computed} from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
-@Component
+
+@Component({
+  computed:{
+    tagList(){
+      // TODO
+      // return this.$store.fetchTags();
+      return []
+    }
+  }}
+)
 export default class Tags extends Vue {
-  @Prop() readonly dataSource: string[] | undefined;//字符串数组  @Prop不指定类型可以用（）表示  readonly只读属性
+  // @Prop({required: true}) readonly dataSource!: string[];//字符串数组  @Prop不指定类型可以用（）表示  readonly只读属性
   selectedTags: string[] = [];
   toggle(tag: string){
     const index = this.selectedTags.indexOf(tag);
@@ -30,12 +39,11 @@ export default class Tags extends Vue {
   }
   create() {
     const name = window.prompt('请输入标签名')
-    if (name === '') {
-      window.alert('标签名不能为空');
-    }else if(this.dataSource){
-      this.$emit('update:dataSource', [...this.dataSource, name]);
+    if (!name) {return window.alert('标签名不能为空');}
+      //TODO
+      // store.createTag(name)
+      // this.$emit('update:dataSource', [...this.dataSource, name]);  会报错
       //如果你填了一个name，且name的值不为空，我就会把你要更新dataSource的请求告诉外部，外部就可以接受这个事件
-    }
   }
 }
 </script>
