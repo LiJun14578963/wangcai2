@@ -25,6 +25,9 @@ import {Component} from 'vue-property-decorator';
 })
 export default class Money extends Vue {
   //设置初始值，没有初始值的话设置为空数组
+  get recordList(){
+    return this.$store.state.recordList;
+  }
   record: RecordItem = {
     tags: [''], notes: '', type: '-', amount: 0
   }//对声明的对象赋值
