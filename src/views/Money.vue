@@ -19,7 +19,6 @@ import FormItem from '@/components/Money/Formltem.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component} from 'vue-property-decorator';
 
-
 @Component({
   components: {Tags, FormItem, Types, NumberPad},
 })

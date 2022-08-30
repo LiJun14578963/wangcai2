@@ -31,6 +31,7 @@ export default class EditLabel extends Vue {
   }
   created() {
     const id = this.$route.params.id;
+    this.$store.commit('fetchTags')
     this.$store.commit('setCurrentTag',id);
     console.log(this.tag);
     if(!this.tag){
@@ -39,23 +40,18 @@ export default class EditLabel extends Vue {
     }
   //路由的信息放到route里面，路由器相关的放到replace里面
   update(name: string) {
+    console.log(name);
     if (this.tag) {
-      // TODO
-      // store.updateTag(this.tag.id, name);
+      this.$store.commit('updateTag', {
+        id: this.tag.id, name
+      });
     }
   }
   remove() {
     if (this.tag) {
-      // TODO
-      return
-      // if (store.removeTag(this.tag.id)) {
-      //   this.$router.back();
-      // } else {
-      //   window.alert('删除失败');
-      // }
+      this.$store.commit('removeTag',this.tag.id)
     }
   }
-
   goBack() {
     this.$router.back();//回退到上一步
   }
