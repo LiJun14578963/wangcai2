@@ -1,7 +1,7 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button @click="create">新增标签</button>
+      <button @click="createTag">新增标签</button>
     </div>
     <ul class="current">
       <li v-for="tag in tagList"  :key="tag.id"
@@ -15,6 +15,8 @@
 <script lang="ts">
 import Vue, {computed} from 'vue';
 import {Component, Prop} from 'vue-property-decorator';
+import {mixins} from 'vue-class-component';
+import TagHelper from '@/mixins/TagHelper';
 
 @Component({
   computed:{
@@ -23,7 +25,7 @@ import {Component, Prop} from 'vue-property-decorator';
     }
   }}
 )
-export default class Tags extends Vue {
+export default class Tags extends mixins(TagHelper) {
   // @Prop({required: true}) readonly dataSource!: string[];//字符串数组  @Prop不指定类型可以用（）表示  readonly只读属性
   selectedTags: string[] = [];
   created(){
@@ -38,15 +40,13 @@ export default class Tags extends Vue {
     }
     this.$emit('update:value',this.selectedTags)//点击的时候把this.selectedTags 传参数给 value
   }
-  create() {
-    const name = window.prompt('请输入标签名')
-    if (!name) {return window.alert('标签名不能为空');}
-    this.$store.commit('createTag',name)
-
-
-      // this.$emit('update:dataSource', [...this.dataSource, name]);  会报错
-      //如果你填了一个name，且name的值不为空，我就会把你要更新dataSource的请求告诉外部，外部就可以接受这个事件
-  }
+  // create() {
+  //   const name = window.prompt('请输入标签名')
+  //   if (!name) {return window.alert('标签名不能为空');}
+  //   this.$store.commit('createTag',name)
+  //     // this.$emit('update:dataSource', [...this.dataSource, name]);  会报错
+  //     //如果你填了一个name，且name的值不为空，我就会把你要更新dataSource的请求告诉外部，外部就可以接受这个事件
+  // }
 }
 </script>
 
