@@ -2,7 +2,7 @@
   <Layout class-prefix="layout">
     <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
 <!--    <Types :value="record.type" @update:value="onUpdateType"/>-->
-    <Types :value.sync="record.type"/>
+    <Tabs :data-source="recordTypeList" :value.sync="record.type"/>
     <div class="notes">
       <FormItem field-name="备注"
                 placeholder="在这里输入备注"
@@ -18,12 +18,15 @@ import Types from '@/components/Money/Types.vue';
 import FormItem from '@/components/Money/Formltem.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component} from 'vue-property-decorator';
+import recordTypeList from '@/constants/recordTypeList';
+import Tabs from '@/components/Tabs.vue';
 
 @Component({
-  components: {Tags, FormItem, Types, NumberPad},
+  components: {Tabs, Tags, FormItem, Types, NumberPad},
 })
 export default class Money extends Vue {
   //设置初始值，没有初始值的话设置为空数组
+  recordTypeList = recordTypeList;
   get recordList(){
     return this.$store.state.recordList;
   }
