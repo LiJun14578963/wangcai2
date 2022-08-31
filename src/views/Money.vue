@@ -21,7 +21,7 @@ import recordTypeList from '@/constants/recordTypeList';
 import Tabs from '@/components/Tabs.vue';
 
 @Component({
-  components: {Tabs, Tags, FormItem, Types, NumberPad},
+  components: {Tabs, Tags, FormItem, NumberPad},
 })
 export default class Money extends Vue {
   //设置初始值，没有初始值的话设置为空数组
