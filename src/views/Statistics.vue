@@ -34,7 +34,6 @@
   .notes{
     margin-right:auto;
     margin-left:8px;
-    color: #999;
   }
 </style>
 <script lang="ts">
