@@ -1,5 +1,5 @@
 module.exports = {
-  "globals": { "RecordItem": true },
+  globals: { "RecordItem": true },
   root: true,
   env: {
     node: true
@@ -22,6 +22,9 @@ module.exports = {
         '**/__tests__/*.{j,t}s?(x)',
         '**/tests/unit/**/*.spec.{j,t}s?(x)'
       ],
+      rules: {
+        'no-undef': 'off',
+      },
       env: {
         jest: true
       }
