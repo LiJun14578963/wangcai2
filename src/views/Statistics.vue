@@ -7,8 +7,8 @@
         <h3 class="title">{{ group.title }} </h3>
         <ol>
           <li v-for="item in group.items" :key="item.id" class="record">
-            <span>{{ tagString(item.tags) }}</span>
-            <span class="notes"}">{{item.notes}}</span>
+            <span>{{ tagString(item.tags)}}</span>
+            <span class="notes">{{item.notes}}1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa2</span>
             <span>￥{{item.amount}}</span>
           </li>
         </ol>
@@ -22,18 +22,27 @@
     line-height: 24px;
     display: flex;
     justify-content: space-between;
-    align-content: center;
   }
   .title{
     @extend %item;
+    border:1px solid lawngreen;
   }
   .record{
     @extend %item;
-    backgroumd: white;
+    background: white;
+    align-items: center;
+    border:1px solid indigo;
+
   }
   .notes{
-    margin-right:auto;
-    margin-left:8px;
+    margin-right:20px;
+    margin-left:16px;
+    color: #999;
+    border:1px solid red;
+    overflow:hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap:wrap
   }
 </style>
 <script lang="ts">
@@ -47,14 +56,12 @@ import recordTypeList from '@/constants/recordTypeList';
   components: {Tabs},
 })
 export default class Statistics extends Vue {
-  tagString(tags: Tag[]) {
-    console.log(tags)
-    return tags.length === 1 ? '无' : tags.join(',')
+  tagString(tags: Tag[],) {
+    return tags.length === 0 ? '无' : tags.join(',')
   }
   get recordList() {
     return (this.$store.state as RootState).recordList;
   }
-
   get result() {
     const {recordList} = this;
     type HashTableValue = { title: string, items: RecordItem[]; }

@@ -28,6 +28,7 @@
 .nav{
   @extend %outerShadow;
   display:flex;
+  justify-content: space-between;
   flex-direction:row;
   font-size:12px;
   > .item{

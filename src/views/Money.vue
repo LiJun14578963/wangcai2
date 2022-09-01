@@ -8,7 +8,7 @@
                 placeholder="在这里输入备注"
                 @update:value="onUpdateNotes"/>
     </div>
-    <Tags />
+    <Tags @update:value="onTagsSelected"/>
   </Layout>
 </template>
 <script lang="ts">
@@ -30,7 +30,7 @@ export default class Money extends Vue {
     return this.$store.state.recordList;
   }
   record: RecordItem = {
-    tags: [''], notes: '', type: '-', amount: 0
+    tags: [], notes: '', type: '-', amount: 0
   }//对声明的对象赋值
   created(){
     this.$store.commit('fetchRecords')
@@ -46,6 +46,9 @@ export default class Money extends Vue {
   }
   saveRecord(){
     this.$store.commit('createRecord',this.record);
+  }
+  onTagsSelected(tags: Tag[]) {
+    this.record.tags = tags.map(t => t.name)
   }
   }
 </script>
