@@ -27,6 +27,7 @@ import intervalList from '@/constants/intervalList';
 import recordTypeList from '@/constants/recordTypeList';
 import dayjs from 'dayjs';
 import clone from '@/lib/clone';
+import {RecordItem, RootState, Tag} from '@/custom';
 
 const api = dayjs();
 
